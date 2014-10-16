@@ -2,13 +2,16 @@
 library(shiny)
 library(dplyr)
 
-# load data
-load("data_clean.RData")
+
 
 # Define server logic required to summarize and view the selected
 # dataset
 shinyServer(function(input, output) {
-   
+  library(dplyr)
+  
+  # load data
+  load("data_clean.RData")
+  
   # Retrieve the kinase for query
   queryInput <- reactive({
     input$query
