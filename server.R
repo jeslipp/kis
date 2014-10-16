@@ -3,7 +3,7 @@ library(shiny)
 library(dplyr)
 
 # load data
-load("data_clean.RData")
+load("data.RData")
 
 # Define server logic required to summarize and view the selected
 # dataset
