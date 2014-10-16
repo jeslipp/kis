@@ -1,4 +1,5 @@
-
+library(shiny)
+load("data.RData")
 
 library(shiny)
 
