@@ -3,7 +3,6 @@ library(shiny)
 library(dplyr)
 
 # load data
-setwd("~/home/github/local/kis/")
 load("./data/data_clean.RData")
 
 # Define server logic required to summarize and view the selected
