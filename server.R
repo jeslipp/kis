@@ -1,6 +1,7 @@
 # import libraries
 library(shiny)
 library(dplyr)
+library(reshape2)
 
 # load data
 load("data.RData")
