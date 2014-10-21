@@ -22,7 +22,7 @@ shinyServer(function(input, output, session) {
       queryInhibitor(input, dataInput())
     }
   }, 
-  options = list(pageLength = 10)
+  options = list(pageLength = 20, lengthMenu = c(10, 20, 50))
   )
 #   output$table <- renderTable({
 #     if (input$selection == "kinase") {
