@@ -15,12 +15,20 @@ shinyServer(function(input, output, session) {
   observe({
     updateSelectInput(session, "exclusion", choices = querySelection() )
   })
-
-  output$table <- renderTable({
+  output$table = renderDataTable({
     if (input$selection == "kinase") {
       queryKinase(input, dataInput())
     } else {
       queryInhibitor(input, dataInput())
     }
-  })
+  }, 
+  options = list(pageLength = 10)
+  )
+#   output$table <- renderTable({
+#     if (input$selection == "kinase") {
+#       queryKinase(input, dataInput())
+#     } else {
+#       queryInhibitor(input, dataInput())
+#     }
+#   })
 })

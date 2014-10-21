@@ -27,7 +27,8 @@ shinyUI(fluidPage(
     # Show a summary of the dataset and an HTML table with the 
     # requested number of observations
     mainPanel(
-      tableOutput(outputId = "table")
+      #tableOutput(outputId = "table")
+      dataTableOutput('table')
     )
   )
 ))

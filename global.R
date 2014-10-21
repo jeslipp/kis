@@ -4,6 +4,7 @@ library(dplyr)
 library(reshape2)
 
 # load data
+setwd("~/home/github/local/kis/")
 load("anastassiadis2011.RData")
 load("gao2013.RData")
 load("kid2014.RData")
@@ -11,7 +12,7 @@ load("kid2014.RData")
 queryKinase <- function(input, data) {
   offtarget_rate <- data %>%
     group_by(compound) %>%
-    summarise(percent_offtarget = sum(percent_activity <= input$query_cut, na.rm = TRUE) / n() * 100)
+    summarise(percent_offtarget = round(sum(percent_activity <= input$query_cut, na.rm = TRUE) / n() * 100, 0))
     
   if (is.null(input$exclusion)) {
     query <- data %>%
@@ -51,7 +52,7 @@ queryKinase <- function(input, data) {
 queryInhibitor <- function(input, data) {
   offtarget_rate <- data %>%
     group_by(kinase) %>%
-    summarise(percent_offtarget = sum(percent_activity <= input$query_cut, na.rm = TRUE) / n() * 100)
+    summarise(percent_offtarget = round(sum(percent_activity <= input$query_cut, na.rm = TRUE) / n() * 100, 0))
   
   if (is.null(input$exclusion)) {
     query <- data %>%
@@ -87,9 +88,3 @@ queryInhibitor <- function(input, data) {
   }
 
 }
-
-
-# d <- data %>% filter(compound %in% compounds) %>%
-#   group_by(compound) %>%
-#   summarise(offtarget_rate = sum(percent_activity <= 70, na.rm = TRUE))
-# d$offtarget_rate
