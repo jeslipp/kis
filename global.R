@@ -4,7 +4,6 @@ library(dplyr)
 library(reshape2)
 
 # load data
-setwd("~/home/github/local/kis/")
 load("anastassiadis2011.RData")
 load("gao2013.RData")
 load("kid2014.RData")
