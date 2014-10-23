@@ -13,8 +13,7 @@ queryKinase <- function(input, data) {
   # calculate offtarget rate of compounds at given cut-off activity
   percent_offtarget <- data %>%
     group_by(compound) %>%
-    summarise(percent_offtarget = sum(percent_activity <= input$query_cut, na.rm = TRUE)) %>%
-    mutate(percent_offtarget = round(percent_offtarget / n() * 100, 0))
+    summarise(percent_offtarget = as.integer(sum(percent_activity <= input$query_cut, na.rm = TRUE) / n() * 100))
   
   # determine activity of specified offtarget kinases at given exclusion cut-off activity
   if (is.null(input$exclusion)) {
@@ -57,8 +56,7 @@ queryInhibitor <- function(input, data) {
   # calculate offtarget rate of kinases at given cut-off activity
   percent_offtarget <- data %>%
     group_by(kinase) %>%
-    summarise(percent_offtarget = sum(percent_activity <= input$query_cut, na.rm = TRUE)) %>%
-    mutate(percent_offtarget = round(percent_offtarget / n() * 100, 0))
+    summarise(percent_offtarget = as.integer(sum(percent_activity <= input$query_cut, na.rm = TRUE) / n() * 100))
   
   # determine activity of specified offtarget compounds at given exclusion cut-off activity
   if (is.null(input$exclusion)) {
@@ -71,7 +69,7 @@ queryInhibitor <- function(input, data) {
              Kinase = kinase, 
              "Activity (%)" = percent_activity, 
              "Gini (Kinase)" = gini_kinase, 
-             "Off-target (% Kinome)" = percent_offtarget)
+             "Off-target (% Inhibitors)" = percent_offtarget)
   } else {
     offtarget <- data %>%
       filter(compound %in% input$exclusion) %>%
@@ -91,7 +89,7 @@ queryInhibitor <- function(input, data) {
              Kinase = kinase, 
              "Activity (%)" = percent_activity, 
              "Gini (Kinase)" = gini_kinase, 
-             "Off-target (% Kinome)" = percent_offtarget)
+             "Off-target (% Inhibitors)" = percent_offtarget)
   }
   
   query
