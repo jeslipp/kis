@@ -7,7 +7,7 @@ library(dplyr)
 ### Anastassiadis 2011 data
 # read data
 # all at 0.5uM
-path <- "~/home/github/local/kis2/data/anastassiadis2011.csv"
+path <- "./data/anastassiadis2011.csv"
 raw <- read.csv(path, 
                 skip = 1, 
                 stringsAsFactors = FALSE, 
@@ -43,13 +43,13 @@ data <- data[complete.cases(data), ]
 data <- select(data, kinase, compound, percent_activity, gini_kinase, gini_compound)
 #data <- select(data, kinase, compound, percent_activity)
 anastassiadis2011 <- data.frame(data)
-save(anastassiadis2011, file = "~/home/github/local/kis2/anastassiadis2011.RData")
+save(anastassiadis2011, file = "./anastassiadis2011.RData")
 
 
 ### Gao 2013 data
 
 # read data
-path <- "~/home/github/local/kis2/data/gao2013.csv"
+path <- "./data/gao2013.csv"
 raw <- read.csv(path, 
                 skip = 1, 
                 stringsAsFactors = FALSE, 
@@ -86,12 +86,12 @@ data <- select(data, kinase, compound, percent_activity, gini_kinase, gini_compo
 #data <- select(data, kinase, compound, percent_activity)
 data <- data[complete.cases(data), ]
 gao2013 <- data.frame(data)
-save(gao2013, file = "~/home/github/local/kis2/gao2013.RData")
+save(gao2013, file = "./gao2013.RData")
 
 
 ### Kinase screen mrc data
 
-path_screen <- "~/home/github/local/kis2/data/kinase_inhibitor_results_2014-10-18T04-26-51.csv"
+path_screen <- "./data/kinase_inhibitor_results_2014-10-18T04-26-51.csv"
 raw <- read.csv(path_screen, stringsAsFactors = FALSE)
 data <- raw %>% 
   select(Kinase, CNumber, Screen.Conc, Inhibition) %>%
@@ -102,7 +102,7 @@ data <- raw %>%
   arrange(kinase)
 #names(data) <- c("kinase", "compound", "concentration", "percent_activity")
 
-path_names <- "~/home/github/local/kis2/data/kinase_inhibitor_list_2014-10-18T04-00-06.csv"
+path_names <- "./kinase_inhibitor_list_2014-10-18T04-00-06.csv"
 inhibitor_names <- read.csv(path_names, stringsAsFactors = FALSE)
 inhibitors <- inhibitor_names$Inhibitor
 names(inhibitors) <- inhibitor_names$CNumber
@@ -147,4 +147,4 @@ data <- select(data, kinase, compound, percent_activity, gini_kinase, gini_compo
 data <- data[complete.cases(data), ]
 
 kid2014 <- data.frame(data)
-save(kid2014, file = "~/home/github/local/kis2/kid2014.RData")
+save(kid2014, file = "./kid2014.RData")
