@@ -37,7 +37,7 @@ queryKinase <- function(input, data) {
     
     # determine compounds that inhibit query kinase at given cut-off activity
     query <- data %>%
-      #select(-gini_kinase) %>%
+      select(-gini_kinase) %>%
       filter(kinase == input$query & percent_activity <= input$query_cut) %>%
       inner_join(percent_offtarget, by = "compound") %>%
       inner_join(offtarget, by = "compound") %>%
