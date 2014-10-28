@@ -15,7 +15,7 @@ shinyUI(fluidPage(
                    choices = list("Kinase" = "kinase", "Inhibitor" = "inhibitor"), 
                    selected = "kinase"),
       # Input query 
-      selectInput("query", label = "Choose query:", choices = ""),
+      selectInput("query", label = "Choose query:", choices = "", multiple = TRUE),
       # Input query cut-off
       sliderInput("query_cut", label = "Residual activity:", min = 0, max = 100, value = 10), 
       # Input exclusion
