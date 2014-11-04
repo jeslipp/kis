@@ -1,34 +1,32 @@
 shinyServer(function(input, output, session) {
-  dataInput <- reactive({
-    get(input$dataset)
-  })
+  
+  ### switch query type between kinase and inhibitor
   querySelection <- reactive({
     if (input$selection == "kinase") {
-      unique(dataInput()$kinase)
+      sort(unique(kid$kinase))
     } else {
-      unique(dataInput()$compound)
+      sort(unique(kid$compound))
     }
   })
+  
+  ### update query selection based on query type
   observe({
     updateSelectInput(session, "query", choices = querySelection() )
   })
+  
+  ### update exclusion selection based on query type
   observe({
     updateSelectInput(session, "exclusion", choices = querySelection() )
   })
+  
+  ### render output as DataTable
   output$table = renderDataTable({
     if (input$selection == "kinase") {
-      queryKinase(input, dataInput())
+      queryKinase(input, kid)
     } else {
-      queryInhibitor(input, dataInput())
+      queryInhibitor(input, kid)
     }
   }, 
   options = list(pageLength = 20, lengthMenu = c(10, 20, 50))
   )
-#   output$table <- renderTable({
-#     if (input$selection == "kinase") {
-#       queryKinase(input, dataInput())
-#     } else {
-#       queryInhibitor(input, dataInput())
-#     }
-#   })
 })

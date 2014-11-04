@@ -9,8 +9,8 @@ shinyUI(fluidPage(
   sidebarLayout(
     sidebarPanel(
       # Select data set
-      selectInput("dataset", "Choose a dataset:", 
-                  choices = c("anastassiadis2011", "gao2013", "kid2014")),
+      #selectInput("dataset", "Choose a dataset:", 
+      #            choices = c("anastassiadis2011", "gao2013", "kid2014")),
       radioButtons("selection", label = "Choose query type: ",
                    choices = list("Kinase" = "kinase", "Inhibitor" = "inhibitor"), 
                    selected = "kinase"),
@@ -28,7 +28,7 @@ shinyUI(fluidPage(
     # requested number of observations
     mainPanel(
       #tableOutput(outputId = "table")
-      dataTableOutput('table')
+      dataTableOutput("table")
     )
   )
 ))
