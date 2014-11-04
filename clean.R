@@ -2,7 +2,7 @@ library(stringr)
 library(reshape2)
 library(tidyr)
 library(dplyr)
-#library(ineq)
+library(ineq)
 
 ### Anastassiadis 2011 data
 # read data
@@ -32,7 +32,7 @@ data <- melt(data,
 data$compound <- as.character(data$compound)
 data$percent_activity <- as.integer(data$percent_activity)
 data$percent_activity <- ifelse(data$percent_activity < 0, 0, ifelse(data$percent_activity > 100, 100, data$percent_activity))
-#data$percent_activity <- as.numeric(data$percent_activity)
+
 data <- data %>%
   group_by(compound) %>%
   mutate(gini_compound = round(ineq(100 - percent_activity, type = "Gini"), 3)) %>%
