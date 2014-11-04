@@ -32,7 +32,7 @@ queryKinase <- function(input, data) {
       group_by(compound) %>%
       filter(min(activity) >= input$exclusion_cut) %>%
       select(kinase, compound, activity) %>%
-      dcast(compound ~ kinase, value.var = "activity")
+      dcast(compound ~ kinase, value.var = "activity", fun.aggregate = mean)
     
     # determine compounds that inhibit query kinase at given cut-off activity
     query <- data %>%
@@ -77,7 +77,7 @@ queryInhibitor <- function(input, data) {
       group_by(kinase) %>%
       filter(min(activity) >= input$exclusion_cut) %>%
       select(kinase, compound, activity) %>%
-      dcast(kinase ~ compound, value.var = "activity")
+      dcast(kinase ~ compound, value.var = "activity", fun.aggregate = mean)
     
     # determine compounds that inhibit query kinase at given cut-off activity
     query <- data %>%

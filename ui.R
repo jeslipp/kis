@@ -8,9 +8,7 @@ shinyUI(fluidPage(
   # number of observations to view
   sidebarLayout(
     sidebarPanel(
-      # Select data set
-      #selectInput("dataset", "Choose a dataset:", 
-      #            choices = c("anastassiadis2011", "gao2013", "kid2014")),
+      # Select query type
       radioButtons("selection", label = "Choose query type: ",
                    choices = list("Kinase" = "kinase", "Inhibitor" = "inhibitor"), 
                    selected = "kinase"),
@@ -27,7 +25,6 @@ shinyUI(fluidPage(
     # Show a summary of the dataset and an HTML table with the 
     # requested number of observations
     mainPanel(
-      #tableOutput(outputId = "table")
       dataTableOutput("table")
     )
   )
